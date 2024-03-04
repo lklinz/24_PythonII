@@ -1,0 +1,75 @@
+1. Find the overlap of each pair of strings:
+
+Input: a pair of strings from the string set 
+Output: overlap time of that pair
+
+INITIALIZE an overlap time to 0
+FOR character location in the length of string 1:
+    IF the character location > length of string 2:
+        BREAK out of the loop
+    ELSE
+        IF the characters from the back of string 1 overlap with ones from the beginnin of string 2:
+            MODIFY overlap time to the character location
+        ENDIF
+    ENDIF
+ENDFOR
+RETURN overlap time
+
+2. Determine the largest overlap
+
+Input: the string set 
+Output: an descending sorted list of triple tuples 
+
+CREEAT an empty list of triple tuples (candidate 1, candidate 2, overlap time) 
+FOR each string location in the length of the string set -1
+    SET candidate 1 to string_set[location]
+    FOR move in the range (location+1,the length of the string set)
+        SET candidate to string_set[move]
+        APPEND the triple tuple(candidate 1, candidate 2, overlap_time(candidate1, candidate2))
+    ENDFOR
+ENDFOR
+SORT the overlap list
+RETURN the overlap list
+
+3. Update the string set
+
+Input: old string set
+Output: new string set with merged string
+
+DETERMINE the largest overlap time
+MERGE two strings in the pair of string having the largest overlap
+REMOVE string 1 from the string set
+REMOVE string 2 from the string set
+ADD the merged string to the string set
+RETURN updated string set
+
+4. Find the shortest superstring
+
+Input: string set
+Output: shortest superstring
+
+INITIALIZE string set
+WHILE the length of string is not equal to 1:
+    INITIALIZE a list of remove item
+    SET flag to 1
+    FOR string in the string set:
+        SET remove to False
+        FOR string location in the range of flag to length of the string set:
+            IF the string_set[s] is substring of item:
+                APPEND remove item to string_set[s]
+                UPDATE remove to True
+            ELIF item is substring of string_set[s]:
+                APPEND remove item to item
+                UPDATE remove to True
+            ENDIF
+        ENDFOR
+        IF remove is true:
+            FOR item in remove item:
+                REMOVE remove item from the string set
+            ENDFOR
+        ENDIF
+        INCREMENT 1 to flag
+    ENDFOR
+    UPDATE the string set
+ENDWHILE
+RETURN the shortest superstring
